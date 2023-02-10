@@ -6,6 +6,7 @@ console.log('***** Cart Functions *****');
 let basket = []
 const maxItems = 5
 
+
 // Create a function called addItem. It should:
     // take an input parameter for a string item
     // add the new item to the global array basket.
@@ -17,6 +18,7 @@ function addItem (item) {
 
 console.log('Add carrot to basket',addItem('Carrot'));
 console.log('Add cucumber to basket',addItem('Cucumber'))
+
 
 //Create a function called listItems. It should:
     //loop over the items in the basket array
@@ -31,6 +33,7 @@ function listItem ( ) {
 //Test:
 console.log('You have the following items in the basket:')
 listItem();
+
 
 //Create a function called empty. It should:
     //reset the basket to an empty array
@@ -56,9 +59,55 @@ listItem();
 empty();
 empty();
 
+
 //Create a function called isFull(). It should:
     //return false if the basket contains less than max number of items
     //return true otherwise (equal or more than maxItems)
-function  isFull() {
-    
-}
+
+    function  isFull() {
+    if ( basket.length < 5 ) {
+        return false;
+    } else {
+    return true
+    }
+} // end isFull
+
+//testing
+
+addItem('chips')
+addItem(' sausages')
+addItem(' turkey')
+addItem(' bacon')
+addItem(' mozzerella')
+
+console.log(`in the basket is ${basket}`);
+console.log(isFull());
+empty()
+console.log(isFull())
+
+//Update the required addItem function to:
+    // Use the isFull function to prevent more than maxItems from being added to the basket.
+    // If an item was added to the array, return true
+    // If there was no room and the item could not be added return false
+
+function addItem2 (item) {
+    if (isFull() === false) {
+        basket.push(item);
+        return true;
+    } else {
+        return false;
+        console.log("Dang basket is empty.") // this does keep coming up and I can't figure out why it won't run the console.log.
+    }
+} //end addItem2
+
+//Testing
+console.log(addItem2('Chicken Tenders'));
+console.log(addItem2('chips'))
+console.log(addItem2('sausages'))
+console.log(addItem2('turkey'))
+console.log(addItem2('bacon'))
+console.log(basket)
+console.log(addItem2('mozzerella'))
+console.log(addItem2('chocolate mousse'))
+console.log(basket)
+// should stop at bacon.
