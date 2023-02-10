@@ -81,9 +81,9 @@ addItem(' bacon')
 addItem(' mozzerella')
 
 console.log(`in the basket is ${basket}`);
-console.log(isFull());
+console.log(`The Basket is full?`, isFull());
 empty()
-console.log(isFull())
+console.log(`The Basket is full?`, isFull())
 
 //Update the required addItem function to:
     // Use the isFull function to prevent more than maxItems from being added to the basket.
@@ -101,13 +101,38 @@ function addItem2 (item) {
 } //end addItem2
 
 //Testing
-console.log(addItem2('Chicken Tenders'));
-console.log(addItem2('chips'))
-console.log(addItem2('sausages'))
-console.log(addItem2('turkey'))
-console.log(addItem2('bacon'))
+console.log("Let's add some items.")
+console.log('Adding some food.', addItem2('Chicken Tenders'));
+console.log('Adding some food.', addItem2('chips'))
+console.log('Adding some food.', addItem2('sausages'))
+console.log('Adding some food.', addItem2('turkey'))
+console.log('Adding some food.', addItem2('bacon'))
 console.log(basket)
-console.log(addItem2('mozzerella'))
-console.log(addItem2('chocolate mousse'))
-console.log(basket)
+console.log("If false, food don't fit.", addItem2('mozzerella')) // should false
+console.log("If false, food donn't fit.", addItem2('chocolate mousse')) // should false
+console.log("What's in the basket!?", basket)
 // should stop at bacon.
+
+
+// Create a function called removeItem. It should:
+    // Take an input parameter for a string item
+    // Use Array.indexOf to find the index of the first matching item in the basket.
+    // Use Array.splice to remove the first matching item from the basket.
+    // Return the item removed or null if the item was not found
+
+function removeItem(stringItem) {
+    let removedItemIndex = basket.indexOf(stringItem); // should be -1 or index.
+    // console.log(removedItemIndex); // enable for testing only
+    if ( basket.indexOf(stringItem) === -1 ) {
+        return null
+    } else {
+        return console.log(basket[removedItemIndex] + ' has been removed.'),
+        basket.splice(removedItemIndex,1) // really not confident the comma at end of line above this one is right but otherwise the code doesn't work. 
+        // quite confident there's a more elegant solution. 
+    } 
+}
+
+console.log(removeItem('chips')) // should return chips
+console.log(basket) // should be basket sans chips.
+console.log(removeItem('salmon')) // should return null.
+console.log(removeItem('chips')) // should return null. 
