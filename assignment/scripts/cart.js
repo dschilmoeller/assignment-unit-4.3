@@ -30,9 +30,17 @@ function listItem ( ) {
     }
 } /// end listItem
 
+// identical functionality:
+function listItem2 (array) {
+    for (item of array) {
+        console.log(item)
+    }
+}
+
 //Test:
 console.log('You have the following items in the basket:')
 listItem();
+listItem2(basket);
 
 
 //Create a function called empty. It should:
@@ -95,8 +103,8 @@ function addItem2 (item) {
         basket.push(item);
         return true;
     } else {
-        return false;
         console.log("Dang basket is empty.") // this does keep coming up and I can't figure out why it won't run the console.log.
+        return false;
     }
 } //end addItem2
 
@@ -126,13 +134,22 @@ function removeItem(stringItem) {
     if ( basket.indexOf(stringItem) === -1 ) {
         return null
     } else {
-        return console.log(basket[removedItemIndex] + ' has been removed.'),
-        basket.splice(removedItemIndex,1) // really not confident the comma at end of line above this one is right but otherwise the code doesn't work. 
+        // including Kris' proposed solution to enhance readability and make more sense.
+        let splicedVal = basket.splice(removedItemIndex,1); // perform slice and save the value sliced out.
+        console.log(splicedVal + ' has been removed'); // console log BEFORE return.
+        return splicedVal;
+        // original solution below.
+        // basket.splice(removedItemIndex,1);
+        // return console.log(basket[removedItemIndex] + ' has been removed.')
+        
         // quite confident there's a more elegant solution. 
     } 
 }
 
-console.log(removeItem('chips')) // should return chips
+console.log(removeItem('chips')) // should return 'chips has been removed'; then return ['chips'] on the next line.
+
 console.log(basket) // should be basket sans chips.
+
 console.log(removeItem('salmon')) // should return null.
+
 console.log(removeItem('chips')) // should return null. 
